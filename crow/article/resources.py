@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse
 
-from crow.article.models import Article
-from crow.article.schemas import ArticleSchema
+from crow.article.models import Article, Author
+from crow.article.schemas import ArticleSchema, AuthorSchema
 
 class ArticleListResource(Resource):
   def get(self):
@@ -9,7 +9,7 @@ class ArticleListResource(Resource):
     parser.add_argument("title", type=str, help="Title of article")
     args = parser.parse_args()
 
-    # Filters
+    ## Filters
     if args["title"]:
       articles = Article.query.filter(Article.title == args["title"]).all()
       print(0)
@@ -18,3 +18,9 @@ class ArticleListResource(Resource):
       print(1)
 
     return ArticleSchema(many=True).dump(articles)
+
+class AuthorListResource(Resource):
+  def get(self):
+    authors = Author.query.all()
+
+    return AuthorSchema(many=True).dump(authors)
