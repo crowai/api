@@ -4,6 +4,8 @@ from flask import Flask
 
 from crow.extensions import (
   db,
+  ma,
+  mg,
 )
 
 def create_app(config_filename="flask.cfg"):
@@ -21,6 +23,8 @@ def initialize_extensions(app):
   """Initializing Flask extensions."""
 
   db.init_app(app)
+  ma.init_app(app)
+  mg.init_app(app, db)
 
   return None
 
@@ -28,9 +32,9 @@ def register_blueprints(app):
   """Registering Flask blueprints."""
 
   from crow.main.views import main
-  from crow.api.api import api
+  from crow.api.api import api_bp
 
   app.register_blueprint(main)
-  app.register_blueprint(api)
+  app.register_blueprint(api_bp)
   
   return None

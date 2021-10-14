@@ -1,7 +1,11 @@
 from flask import Blueprint, render_template
+from flask_restful import Api
 
-api = Blueprint("api", __name__)
+from crow.article.resources import ArticleListResource
 
-@api.route("/api/v1/test")
-def test():
-  return "test"
+api_bp = Blueprint("api", __name__)
+api =Api(api_bp)
+
+pre = "/api/v1/"
+
+api.add_resource(ArticleListResource, pre + "articles/", endpoint="articles")
