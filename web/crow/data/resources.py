@@ -20,8 +20,13 @@ class SentimentListResource(Resource):
     args = parser.parse_args()
 
     with create_app().app_context():
-      author = Author.query.filter_by(id=uuid.UUID(args["author"]).hex).first()
-      sentiment = Sentiment(content=args["content"], author=author)
+      try:
+        author = Author.query.filter_by(id=uuid.UUID(args["author"]).hex).first()
+      except ValueError:
+        author = Author(name=args["author"])
+        db.session.add(author)
+
+      sentiment = Sentiment(content=args["content"].encode("ascii", "ignore").decode("ascii"), author=author)
 
       db.session.add(sentiment)
       db.session.commit()

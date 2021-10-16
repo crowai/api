@@ -9,7 +9,7 @@ class Sentiment(db.Model):
   Model used for storing sentiments.
   """
   id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True)
-  content = db.Column(db.String(512), nullable=False)
+  content = db.Column(db.String(1024), nullable=False)
   sentiment = db.Column(db.Float(), nullable=False, default=0.5)
 
   date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
