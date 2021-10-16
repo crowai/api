@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.abspath('.'))
 import sys
 
 from crow.app import create_app, db
-from crow.article.models import Article, Author
+from crow.data.models import Sentiment, Author
 
 def newAuthor():
   with create_app().app_context():
@@ -15,31 +15,31 @@ def newAuthor():
     db.session.commit()
     print("Author successfully added.")
 
-def newArticle():
+def newSentiment():
   with create_app().app_context():
-    title = input("Title: ")
+    content = input("Content: ")
     authorName = input("Author: ")
 
     author = Author.query.filter_by(name=authorName).first()
     if author:
-      article = Article(title=title, author=author)
-      db.session.add(article)
+      sentiment = Sentiment(content=content, author=author)
+      db.session.add(sentiment)
       db.session.commit()
-      print("Article successfully added.")
+      print("Sentiment successfully added.")
     else:
       print(f"No author found with name ({authorName}).")
       createAuthor = input(f"Create new author with name ({authorName})? (Y/n): ")
       if createAuthor != "n" or createAuthor != "N":
         author = Author(name=authorName)
-        article = Article(title=title, author=author)
+        sentiment = Sentiment(content=content, author=author)
         db.session.add(author)
-        db.session.add(article)
+        db.session.add(sentiment)
         db.session.commit()
-        print("Article successfully added.")
+        print("Sentiment successfully added.")
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
     if sys.argv[1] == "--author":
       newAuthor()
-    if sys.argv[1] == "--article":
-      newArticle()
+    if sys.argv[1] == "--sentiment":
+      newSentiment()

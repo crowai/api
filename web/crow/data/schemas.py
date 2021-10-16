@@ -1,19 +1,19 @@
 from crow.app import ma
-from crow.article.models import Article, Author
+from crow.data.models import Sentiment, Author
 
 from marshmallow_sqlalchemy.fields import Nested
 
-class ArticleSchema(ma.Schema):
+class SentimentSchema(ma.Schema):
   class Meta:
     fields = (
       "id",
-      "title",
+      "content",
       "author",
       "date",
     )
 
     ordered = True
-    model = Article
+    model = Sentiment
 
   # author = Nested(lambda: AuthorSchema(only=("name",)))
   author = ma.URLFor("api.authors", values=dict(id="<author_id>"))
@@ -23,10 +23,10 @@ class AuthorSchema(ma.Schema):
     fields = (
       "id",
       "name",
-      "articles",
+      "sentiments",
     )
 
     ordered = True
     model = Author
   
-  articles = Nested(lambda: ArticleSchema, many=True)
+  sentiments = Nested(lambda: SentimentSchema(exclude=("author",)), many=True)
