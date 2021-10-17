@@ -1,5 +1,5 @@
 =====================
-CROW AI Documentation
+Crow AI Documentation
 =====================
 
-**Welcome to the CROW AI documentation.** This website supplies all core documentation for the CROW AI project and should help you get started.
+**Welcome to the Crow AI documentation.** This website supplies all core documentation for the Crow AI project and should help you get started.
