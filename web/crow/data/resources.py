@@ -17,6 +17,7 @@ class SentimentListResource(Resource):
   def post(self):
     parser.add_argument("content", required=True, type=str, help="Sentiment content")
     parser.add_argument("author", required=True, type=str, help="Sentiment author id")
+    parser.add_argument("source", required=True, type=str, help="Sentiment source")
     args = parser.parse_args()
 
     with create_app().app_context():
@@ -26,7 +27,7 @@ class SentimentListResource(Resource):
         author = Author(name=args["author"])
         db.session.add(author)
 
-      sentiment = Sentiment(content=args["content"].encode("ascii", "ignore").decode("ascii"), author=author)
+      sentiment = Sentiment(content=args["content"].replace("\n", "").encode("ascii", "ignore").decode("ascii"), author=author, source=args["source"])
 
       db.session.add(sentiment)
       db.session.commit()

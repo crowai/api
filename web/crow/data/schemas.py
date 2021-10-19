@@ -9,6 +9,7 @@ class SentimentSchema(ma.Schema):
       "id",
       "content",
       "author",
+      "source",
       "date",
     )
 

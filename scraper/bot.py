@@ -43,12 +43,15 @@ class Bot(object):
           author = sentiments[i].find_element_by_xpath(f"/html/body/div[3]/div/div/div[3]/div/div/div[1]/div[2]/div/div/div[2]/div[3]/div/div[{ i+1 }]/div/div/article/div/div[2]/div[1]/span[1]/span/a/span").text
           content = sentiments[i].find_element_by_xpath(f"/html/body/div[3]/div/div/div[3]/div/div/div[1]/div[2]/div/div/div[2]/div[3]/div/div[{ i+1 }]/div/div/article/div/div[2]/div[2]/div/div/div").text
 
-          requests.post(API_URL, data = {
+          r = requests.post(API_URL, data = {
             "content": content,
-            "author": author
+            "author": author,
+            "source": URL
           })
-
-          print("Successfully POSTED new sentiment.")
+          if r.status_code != 201:
+            print("Sentiment POST failed.")
+          else:
+            print("Successfully POSTED new sentiment.")
 
       sentimentCount = len(sentimentContainer.find_elements_by_xpath("./div"))
 
