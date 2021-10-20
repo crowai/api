@@ -1,5 +1,9 @@
-<p align="center" style="font-size: 30px;">
-  <b>Crow AI</b>
+<p align="center">
+  <img src="/home/lan/Documents/crowai/docs/logo.jpg" height=150px width=150px>
+</p>
+
+<p align="center" style="font-size: 25px; font-weight: bold;">
+  Crow AI
 </p>
 
 <p align="center">
@@ -7,16 +11,18 @@
 </p>
 
 <p align="center">
+<img src="https://img.shields.io/github/workflow/status/crowai/api/Python%20Tests" />
 <img src="https://img.shields.io/github/license/ikoide/crow">
 <img src="https://img.shields.io/github/issues/ikoide/crow" />
-  <img src="https://img.shields.io/github/workflow/status/minancenet/web/Python%20application" />
 </p>
 
 <h3 align="center">  
-  <a href="https://github.com/ikoide/crow/blob/main/CONTRIBUTING.md">Contribute</a>
+  <a href="https://github.com/crowai/api">API</a>
   <span> · </span>
-  <a href="https://github.com/ikoide/crow">Community</a>
+  <a href="https://github.com/crowai/scraper">Scraper</a>
   <span> · </span>
-  <a href="https://crowai.readthedocs.io/en/latest/">Documentation</a>
+  <a href="https://github.com/crowai/analysis">Analysis</a>
+  <span> · </span>
+  <a href="https://github.com/crowai/documentation">Documentation</a>
 </h3>
 <p align="center"><b>Crow AI</b></p>
