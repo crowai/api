@@ -1,0 +1,1 @@
+Crow AI is not currently accepting contributions.
