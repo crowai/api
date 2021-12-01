@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/home/lan/Documents/crowai/docs/logo.jpg" height=150px width=150px>
+  <img src="https://github.com/crowai/docs/blob/main/logo.jpg" height=150px width=150px>
 </p>
 
 <p align="center" style="font-size: 25px; font-weight: bold;">

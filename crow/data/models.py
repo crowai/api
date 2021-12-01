@@ -11,11 +11,21 @@ class Sentiment(db.Model):
   id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True)
   source = db.Column(db.String(), nullable=False)
   content = db.Column(db.String(1024), nullable=False)
-  sentiment = db.Column(db.Float(), nullable=False, default=0.5)
+  sentiment = db.Column(db.Float(), nullable=False, default=0)
 
   date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
 
   author_id = db.Column(UUID(as_uuid=True), db.ForeignKey("author.id"), nullable=False)
+
+class Word(db.Model):
+  """
+  Model used for storing word objects.
+  """
+  id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True)
+  word = db.Column(db.String(), nullable=False)
+  weight = db.Column(db.Float(precision=3), nullable=False, default=0)
+  accuracy = db.Column(db.Float(precision=3), nullable=False, default=0)
+  frequency = db.Column(db.Float(precision=3), nullable=False, default=1)
 
 class Author(db.Model):
   """
