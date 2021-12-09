@@ -10,8 +10,10 @@ class SentimentSchema(ma.Schema):
       "content",
       "author",
       "sentiment",
+      "excSentiment",
       "source",
       "date",
+      "parsed",
     )
     
     ordered = True

@@ -31,7 +31,7 @@ def newSentiment():
       createAuthor = input(f"Create new author with name ({authorName})? (Y/n): ")
       if createAuthor != "n" or createAuthor != "N":
         author = Author(name=authorName)
-        sentiment = Sentiment(content=content, author=author)
+        sentiment = Sentiment(content=content, author=author, source="https://stocktwits.com/symbol/BTC.X")
         db.session.add(author)
         db.session.add(sentiment)
         db.session.commit()

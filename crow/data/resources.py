@@ -9,7 +9,35 @@ from crow.data.schemas import SentimentSchema, AuthorSchema, WordSchema
 
 class SentimentListResource(Resource):
   def get(self):
+    parser = reqparse.RequestParser()
+
+    parser.add_argument("parsed", required=False, type=str, help="Is sentiment parsed.")
+    parser.add_argument("limit", type=int)
+    args = parser.parse_args()
+
     sentiments = Sentiment.query.all()
+
+    if args["parsed"]:
+      if args["parsed"] == "true":
+        sentiments = Sentiment.query.filter_by(parsed=True).all()
+      elif args["parsed"] == "false":
+        sentiments = Sentiment.query.filter_by(parsed=False).all()
+    if args["limit"]:
+      sentiments = Sentiment.query.limit(args["limit"]).all()
+
+    return SentimentSchema(many=True).dump(sentiments), 200
+
+  def patch(self):
+    parser = reqparse.RequestParser()
+
+    parser.add_argument("id", type=str)
+    parser.add_argument("parsed", type=str)
+    args = parser.parse_args()
+
+    if args["parsed"] == "true":
+      sentiment = Sentiment.query.filter_by(id=uuid.UUID(args["id"]).hex).first()
+      sentiment.parsed = True
+      db.session.commit()
 
     return SentimentSchema(many=True).dump(sentiments), 200
 
@@ -19,7 +47,7 @@ class SentimentListResource(Resource):
     parser.add_argument("content", required=True, type=str, help="Sentiment content")
     parser.add_argument("author", required=True, type=str, help="Sentiment author id")
     parser.add_argument("source", required=True, type=str, help="Sentiment source")
-    parser.add_argument("sentiment", type=float, help="Sentiment value (optional)")
+    parser.add_argument("excSentiment", type=str, help="Sentiment value (optional)")
     args = parser.parse_args()
 
     with create_app().app_context():
@@ -31,8 +59,8 @@ class SentimentListResource(Resource):
 
       sentiment = Sentiment(content=args["content"].replace("\n", "").encode("ascii", "ignore").decode("ascii"), author=author, source=args["source"])
 
-      if args["sentiment"]:
-        sentiment.sentiment = args["sentiment"]
+      if args["excSentiment"]:
+        sentiment.excSentiment = args["excSentiment"]
 
       db.session.add(sentiment)
       db.session.commit()
@@ -61,7 +89,7 @@ class WordListResource(Resource):
     args = parser.parse_args()
 
     with create_app().app_context():
-      word = Word(word=args["word"], weight=0, accuracy=0, frequency=0)
+      word = Word(word=args["word"])
       db.session.add(word)
       db.session.commit()
 
@@ -77,7 +105,8 @@ class WordListResource(Resource):
     parser.add_argument("weight", type=float)
     args = parser.parse_args()
     word = Word.query.filter_by(word=args["word"]).first()
-    word.weight = args["weight"]
+    if args["weight"]:
+      word.weight = args["weight"]
     word.frequency += 1
     db.session.commit()
 
