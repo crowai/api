@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "SourceCodePro";
+  src: url('../fonts/SourceCodePro/SourceCodePro-Regular.ttf');
+}
+
+@font-face {
+  font-family: "SCPMedium";
+  src: url('../fonts/SourceCodePro/SourceCodePro-Medium.ttf');
+}
+
+@font-face {
+  font-family: "SCPBold";
+  src: url('../fonts/SourceCodePro/SourceCodePro-Bold.ttf');
+}

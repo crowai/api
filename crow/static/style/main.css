@@ -1,0 +1,244 @@
+html {
+  padding: 0rem 0rem;
+  margin: 0;
+  color: #FFFFFF;
+  font-family: "SourceCodePro";
+  letter-spacing: -0.01em;
+  scroll-behavior: smooth;
+  background-color: #0a0a0a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.bold {
+  font-family: "SCPBold";
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.row:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.col {
+  float: left;
+  display: inline;
+}
+
+.section-1 {
+  padding: 1rem 3rem;
+  height: 110vh;
+}
+
+.col-1 {
+  width: 8.3333333333%;
+}
+
+.col-2 {
+  width: 16.6666666667%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.3333333333%;
+}
+
+.col-5 {
+  width: 41.6666666667%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-7 {
+  width: 58.3333333333%;
+}
+
+.col-8 {
+  width: 66.6666666667%;
+}
+
+.col-9 {
+  width: 75%;
+}
+
+.col-10 {
+  width: 83.3333333333%;
+}
+
+.col-11 {
+  width: 91.6666666667%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+.logo-img {
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  left: 3rem;
+  top: 1rem;
+}
+
+.hello-container {
+  padding: 4rem 0rem;
+}
+
+.hello {
+  font-size: 5rem;
+  font-family: "SCPBold";
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: #E7E7E7;
+  font-size: 1.6rem;
+}
+
+.links {
+  padding-left: 0;
+  list-style-type: none;
+  position: fixed;
+  left: 3rem;
+  bottom: 1rem;
+}
+
+.link a {
+  color: #FFFFFF;
+  font-family: "SCPMedium";
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+.link a:hover {
+  text-decoration: underline;
+}
+
+.settings-share {
+  position: fixed;
+  right: 3rem;
+  top: 1rem;
+  z-index: 1;
+}
+
+.prediction-container {
+  text-align: right;
+  padding: 10rem 0rem;
+}
+
+.prediction-price {
+  font-size: 5.5rem;
+  font-family: "SCPBold";
+  margin: 0;
+}
+
+.prediction-points {
+  color: #29F03D;
+  font-size: 2.5rem;
+  font-family: "SCPBold";
+  margin: 0;
+}
+
+.prediction-desc {
+  color: #E7E7E7;
+  font-size: 1.3rem;
+}
+
+.prediction-date {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.crypto-prices {
+  position: fixed;
+  right: 3rem;
+  bottom: 1rem;
+  z-index: 1;
+}
+
+.xbt {
+  color: #E38215;
+}
+
+.bch {
+  color: #7AFA5A;
+}
+
+.eth {
+  color: #7A91B3;
+}
+
+.xmr {
+  color: #FF6600;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+.section-2 {
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+  padding-left: 3rem;
+  padding-right: 0rem;
+}
+
+@keyframes slidein {
+  0% {
+    margin-left: 100px;
+  }
+  100% {
+    margin-left: 0%;
+  }
+}
+.eighty.start {
+  animation-name: slidein;
+  animation-duration: 2s;
+}
+
+.left-section {
+  margin-top: 48rem;
+  margin-bottom: 24rem;
+  background-color: #121212;
+}
+
+.right-section {
+  background-color: #000000;
+  position: -webkit-sticky;
+  position: sticky;
+  height: 100vh;
+  top: 0;
+  z-index: 10;
+}
+
+.section-3 {
+  height: 200vh;
+  background-color: #fff;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+/*# sourceMappingURL=main.css.map */

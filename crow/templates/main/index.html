@@ -1,9 +1,117 @@
+<!-- For frontend testing purposes -->
+
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}" text="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/fonts.css') }}" text="text/css" />
+
+    <title>CROW AI</title>
   </head>
   <body>
-    <p>Crow API</p>
+    <div class="row section-1">
+      <div class="col col-6">
+        <img src="{{ url_for('static', filename='img/logo.jpg') }}" class="logo-img" />
+        <div class="hello-container">
+          <h1 id="hello" class="hello">
+            Hello!<br>
+            I'm CROW
+          </h1>
+          <p class="description"><span id="description"></span><span class="blink_me">|</span></p>
+        </div>
+        <ul class="links">
+          <li class="link"><a href="#analysis">Prediction Analysis</a></li>
+          <li class="link"><a href="#">Technology</a></li>
+          <li class="link"><a href="#">Team</a></li>
+          <li class="link"><a href="#">Contact</a></li>
+        </ul>    
+      </div>
+      <div class="col col-6">
+        <p class="settings-share">Settings ■ API ■ Share!</p>
+        <div class="prediction-container">
+          <h3 class="prediction-date">October 28th, 2020 09:30 EST</h3>
+          <h1 class="prediction-price">$16149</h1>
+          <h2 class="prediction-points">+3.5</h2>
+          <p class="prediction-desc">Formulated by over<br>
+            <span class="bold">120836</span> independent trader<br>
+            sentiments.</p>  
+        </div>
+        <p class="crypto-prices"><span class="xbt">XBT</span> $13,419 ■ <span class="bch">BCH</span> $266 ■ <span class="eth">ETH</span> $404 ■ <span class="xmr">XMR</span> $136</p>
+      </div>
+    </div>
+    <!-- <div class="row section-2" id="analysis">
+      <div class="col col-4">
+        <div class="left-section">
+          <div class="bar">
+            <h1 class="bold level eighty">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+            <p><span id="temp"></span><span class="blink_me">|</span></p>  
+          </div>
+        </div>
+      </div>
+      <div class="col col-8 sticky">
+        <div class="right-section ">
+          d
+        </div>
+      </div>
+    </div>
+    <div class="section-3">
+      d
+    </div> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function typeWriter(content, elementName, speed, start, lock) { 
+        if (this.start < this.content.length) {
+          document.getElementById(this.elementName).innerHTML += this.content.charAt(this.start);
+          this.start++;
+          setTimeout(typeWriter, this.speed);
+          if (this.lock) {
+            document.getElementsByTagName("body")[0].style = "overflow-y: hidden;"
+          }
+        }
+        else {
+          if (this.lock) {
+            document.getElementsByTagName("body")[0].style = "overflow-y: scroll;"
+          }
+        }
+      }
+
+
+      function isElementInViewport(elem) {
+        var $elem = $(elem);
+
+        // Get the scroll position of the page.
+        var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html');
+        var viewportTop = $(scrollElem).scrollTop();
+        var viewportBottom = viewportTop + $(window).height();
+
+        // Get the position of the element on the page.
+        var elemTop = Math.round( $elem.offset().top );
+        var elemBottom = elemTop + $elem.height();
+
+        return ((elemTop < viewportBottom) && (elemBottom > viewportTop));
+      }
+
+      // Check if it's time to start the animation.
+      function checkAnimation() {
+        var $elem = $('.bar .level');
+
+        // If the animation has already been started
+        if ($elem.hasClass('start')) return;
+
+        if (isElementInViewport($elem)) {
+            // Start the animation
+            $elem.addClass('start');
+            typeWriter(content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis est voluptates minus alias harum, eligendi in accusantium et magni soluta tenetur commodi.", elementName="temp", speed=25, start=0, lock=false);
+        }
+      }
+
+      // Capture scroll events
+      $(window).scroll(function(){
+        checkAnimation();
+      });
+      typeWriter(content="I predict cryptocurrency prices based on public trader sentiment.", elementName="description", speed=35, start=0, lock=true);
+    </script>
   </body>
 </html>
