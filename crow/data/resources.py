@@ -105,10 +105,14 @@ class WordListResource(Resource):
     parser.add_argument("weight", type=float)
     args = parser.parse_args()
     word = Word.query.filter_by(word=args["word"]).first()
-    if args["weight"]:
-      word.weight = args["weight"]
-    word.frequency += 1
-    db.session.commit()
+    try:
+      if args["weight"]:
+        print(args["weight"])
+        word.weight = args["weight"]
+      word.frequency += 1
+      db.session.commit()
+    except Exception as e:
+      print(e)
 
 class AuthorListResource(Resource):
   def get(self):

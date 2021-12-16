@@ -9,4 +9,4 @@ def test_landing(test_client):
   response = test_client.get("/")
 
   assert response.status_code == 200
-  assert b"Crow API" in response.data
+  assert b"I'm CROW" in response.data
