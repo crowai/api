@@ -15,7 +15,7 @@ class Sentiment(db.Model):
   sentiment = db.Column(db.Float(), nullable=False, default=0)
   parsed = db.Column(db.Boolean(), default=False, nullable=False)
 
-  date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
+  date = db.Column(db.DateTime(), nullable=False)
 
   author_id = db.Column(UUID(as_uuid=True), db.ForeignKey("author.id"), nullable=False)
 

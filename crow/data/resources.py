@@ -62,7 +62,7 @@ class SentimentListResource(Resource):
         author = Author(name=args["author"])
         db.session.add(author)
 
-      sentiment = Sentiment(content=args["content"].replace("\n", "").encode("ascii", "ignore").decode("ascii"), author=author, source=args["source"])
+      sentiment = Sentiment(content=args["content"].replace("\n", "").encode("ascii", "ignore").decode("ascii"), author=author, source=args["source"], date=datetime.utcnow())
 
       if args["excSentiment"]:
         sentiment.excSentiment = args["excSentiment"]
