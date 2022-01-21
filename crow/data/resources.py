@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime, timedelta
 
 from flask_restful import Resource, reqparse
 
@@ -12,6 +13,7 @@ class SentimentListResource(Resource):
     parser = reqparse.RequestParser()
 
     parser.add_argument("parsed", required=False, type=str, help="Is sentiment parsed.")
+    parser.add_argument("since", required=False, type=int)
     parser.add_argument("limit", type=int)
     args = parser.parse_args()
 
@@ -22,6 +24,9 @@ class SentimentListResource(Resource):
         sentiments = Sentiment.query.filter_by(parsed=True).all()
       elif args["parsed"] == "false":
         sentiments = Sentiment.query.filter_by(parsed=False).all()
+    if args["since"]:
+      dateSpan = datetime.utcnow() - timedelta(minutes=args["since"])
+      sentiments = Sentiment.query.filter(Sentiment.date > (dateSpan)).all()
     if args["limit"]:
       sentiments = Sentiment.query.limit(args["limit"]).all()
 
