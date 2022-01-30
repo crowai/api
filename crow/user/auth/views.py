@@ -1,11 +1,17 @@
 from flask import Blueprint, render_template, redirect, url_for
 
+from crow.user.auth.forms import LoginForm, RegisterForm
+
 auth = Blueprint("auth", __name__)
 
-@auth.route("/auth/login")
+@auth.route("/auth/login", methods=["GET", "POST"])
 def login():
-  return render_template("user/auth/login.html")
+  form = LoginForm()
+
+  return render_template("user/auth/login.html", form=form)
 
 @auth.route("/auth/register")
 def register():
-  return render_template("user/auth/register.html")
+  form = RegisterForm()
+
+  return render_template("user/auth/register.html", form=form)

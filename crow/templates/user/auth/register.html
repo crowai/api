@@ -1,0 +1,58 @@
+{% include "layouts/main-layout.html" %}
+{% block content %}
+<form method="POST" action="">
+  {{ form.hidden_tag() }}
+
+  <div class="auth-field">
+    {% if form.username.errors %}
+      {{ form.username(class="auth-field invalid", placeholder="Username") }}
+      <div class="invalid-feedback">
+          {% for error in form.username.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+      </div>
+    {% else %}
+      {{ form.username(class="auth-field", placeholder="Username") }}
+    {% endif %}
+  </div>
+
+  <div class="auth-field">
+    {% if form.password.errors %}
+      {{ form.password(class="auth-field invalid", placeholder="Password") }}
+      <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+      </div>
+    {% else %}
+      {{ form.password(class="auth-field", placeholder="Password") }}
+    {% endif %}
+  </div>
+
+  <div class="auth-field">
+    {% if form.confirm_password.errors %}
+      {{ form.confirm_password(class="auth-field invalid", placeholder="Confirm Password") }}
+      <div class="invalid-feedback">
+          {% for error in form.confirm_password.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+      </div>
+    {% else %}
+      {{ form.confirm_password(class="auth-field", placeholder="Confirm Password") }}
+    {% endif %}
+  </div>
+
+  <div class="auth-field">
+    {% if form.register.errors %}
+      {{ form.register(class="auth-field invalid") }}
+      <div class="invalid-feedback">
+          {% for error in form.register.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+      </div>
+    {% else %}
+      {{ form.register(class="auth-field") }}
+    {% endif %}
+  </div>
+</form>
+{% endblock content %}
