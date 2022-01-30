@@ -31,16 +31,8 @@ def initialize_extensions(app):
 def register_blueprints(app):
   """Registering Flask blueprints."""
 
-  from crow.main.views import main
-  from crow.user.public.views import user
-  from crow.user.auth.views import auth
-  from crow.admin.views import admin
   from crow.api.api import api_bp
 
-  app.register_blueprint(main)
-  app.register_blueprint(user)
-  app.register_blueprint(auth)
-  app.register_blueprint(admin)
   app.register_blueprint(api_bp)
   
   return None
